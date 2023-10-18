@@ -1,32 +1,34 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<div id="app">
+
+  <!--<navbar></navbar>-->
+
+  <router-view :key="$route.fullPath"></router-view>  <!-- 2023/04/06, 解決Reload with current path and call data hook again-->
+</div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Navbar from './components/Navbar.vue';
+
+export default {
+  components: {
+    'navbar': Navbar
+  },
+  name: 'Menu',
+  data() {
+    return {
+
+    };
+  },
 }
+</script>
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<style scoped lang="scss">
+  @media (min-width: 992px) {
+    .navbar.custom-nav{
+      padding-top:16px;
+      padding-bottom:16px;
+      background-color: #7DA79D !important;
     }
-  }
-}
+   }
 </style>
